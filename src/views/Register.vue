@@ -1,26 +1,24 @@
 <template>
-  <form class="card auth-card">
+  <Form class="card auth-card" v-slot="{ errors }" @submit="register">
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
       <div class="input-field">
-        <input id="email" type="text" />
-        <label for="email">Email</label>
-        <small class="helper-text invalid">Email</small>
+        <Field name="email" type="email" v-model="email" as="input" placeholder="Email" :rules="emailValidation" /> 
+        <span class="helper-text invalid"> {{errors.email}} </span>
       </div>
       <div class="input-field">
-        <input id="password" type="password" class="validate" />
-        <label for="password">Пароль</label>
-        <small class="helper-text invalid">Password</small>
+        <Field  as="input" type="password" name="password" v-model="password" :rules="passwordValidation" placeholder="Пароль" />
+        <small class="helper-text invalid">{{errors.password}}</small>
       </div>
       <div class="input-field">
-        <input id="name" type="text" class="validate" />
-        <label for="name">Имя</label>
-        <small class="helper-text invalid">Name</small>
+        <Field name="name" type="text" :rules="nameValidation" v-model="name" placeholder="Имя" />
+        <small class="helper-text invalid">{{ errors.name }}</small>
       </div>
       <p>
         <label>
-          <input type="checkbox" />
+          <Field name="accept" as="input" v-model="accept" :rules="checkBoxValidation" type="checkbox"/>
           <span>С правилами согласен</span>
+          <span class="helper-text invalid">{{ errors.accept }}</span>
         </label>
       </p>
     </div>
@@ -31,11 +29,53 @@
           <i class="material-icons right">send</i>
         </button>
       </div>
-
       <p class="center">
         Уже есть аккаунт?
         <router-link to="/login">Войти!</router-link>
       </p>
     </div>
-  </form>
+  </Form>
 </template>
+<script>
+import {emailValidation, passwordValidation, nameValidation, checkBoxValidation} from '../validateRules/rules'
+
+export default {
+  name: "register",
+  data: () => ({
+    email: null,
+    password: null,
+    name: null,
+    accept: false
+  }),
+  components: {
+  },
+  methods: {
+    emailValidation(){
+      return emailValidation(this.email);
+    },
+    passwordValidation(){
+      return passwordValidation(this.password);
+    },
+    nameValidation(){
+      return nameValidation(this.name);
+    },
+    checkBoxValidation(){
+      return checkBoxValidation(this.accept);
+    },
+    register() {
+      
+      const formData = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      };
+      console.log(formData);
+      // this.$router.push("/");
+    },
+  },
+  mounted(){
+   
+    this.$message('test');
+  }
+};
+</script>

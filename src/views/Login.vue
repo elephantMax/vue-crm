@@ -44,12 +44,16 @@ export default {
     passwordValidation(){
       return rules['passwordValidation'](this.password);
     },
-    login() {
+    async login() {
       const formData = {
         email: this.email,
         password: this.password
       }
-      this.$router.push('/');
+      try{
+        await this.$store.dispatch('login', formData); //1ый аргумент - название action 2ой - объект с полями и значениями
+        this.$router.push('/');
+      }
+      catch (e){}
     },
   },
   mounted(){

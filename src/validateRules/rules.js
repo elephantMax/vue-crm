@@ -28,5 +28,5 @@ export function nameValidation(value){
 }
 
 export function checkBoxValidation(value){
-    return !value ? true : 'Необходимо согласиться с правилами';
+    return value === 'on' ? true : 'Необходимо согласиться с правилами';
 }

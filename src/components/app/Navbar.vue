@@ -16,7 +16,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            USER NAME
+            {{name}}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -57,7 +57,8 @@ export default {
       }, 1000)
     },
     methods:{
-      logout(){
+      async logout(){
+        await this.$store.dispatch('logout');
         this.$router.push('/login?message=logout');
       }
     },
@@ -71,6 +72,9 @@ export default {
     computed:{
       dateComp(){
         return dateFilter(this.date, 'datetime');
+      },
+      name(){
+        return this.$store.getters.info.name;
       }
     }
 }

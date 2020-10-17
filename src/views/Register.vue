@@ -45,7 +45,7 @@ export default {
     email: null,
     password: null,
     name: null,
-    accept: false
+    accept: null
   }),
   components: {
   },
@@ -62,15 +62,18 @@ export default {
     checkBoxValidation(){
       return checkBoxValidation(this.accept);
     },
-    register() {
-      
+    async register() {
       const formData = {
         name: this.name,
         email: this.email,
         password: this.password,
       };
-      console.log(formData);
-      // this.$router.push("/");
+      try{
+        await this.$store.dispatch('register', formData);
+        this.$router.push("/");
+      }
+      catch (e) {}
+      
     },
   },
   mounted(){

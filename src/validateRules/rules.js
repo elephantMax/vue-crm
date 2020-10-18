@@ -30,3 +30,22 @@ export function nameValidation(value){
 export function checkBoxValidation(value){
     return value === 'on' ? true : 'Необходимо согласиться с правилами';
 }
+
+export function minValueValidation(value, minVal = 10000){
+    return value > minVal ? true : false;
+}
+
+export function requiredRule(value){
+    return value ? true : 'Данное поле обязательное';
+}
+
+export function StringValue(value){
+    if(!/^[a-z]+$/i.test(value)){
+        return 'Данное поле должно являться строкой';
+    }
+    return true;
+}
+
+export function NumberValue(value){
+    return /^[\d]+$/i.test(value)  
+}

@@ -7,7 +7,7 @@ import messagePlugin from '@/utils/message.plugin';
 import Loader from '@/components/app/Loader';
 import './registerServiceWorker'
 import 'materialize-css/dist/js/materialize.min'
-
+import tooltipDirective from '@/directives/tooltip.directive';
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -32,6 +32,7 @@ firebase.auth().onAuthStateChanged(()=>{
     if(!app){
         app = createApp(App);
         app.use(messagePlugin);
+        app.directive('tooltip', tooltipDirective);
         app.component('Field', Field);
         app.component('Form', Form);
         app.component('Loader', Loader);

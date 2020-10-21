@@ -32,11 +32,11 @@ export function checkBoxValidation(value){
 }
 
 export function minValueValidation(value, minVal = 10000){
-    return value > minVal ? true : false;
+    return value >= minVal ? true : false;
 }
 
 export function requiredRule(value){
-    return value ? true : 'Данное поле обязательное';
+    return value ? true : false;
 }
 
 export function StringValue(value){

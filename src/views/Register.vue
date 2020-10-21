@@ -75,10 +75,6 @@ export default {
       catch (e) {}
       
     },
-  },
-  mounted(){
-   
-    this.$message('test');
   }
 };
 </script>

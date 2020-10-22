@@ -21,7 +21,7 @@ const routes = [
     component: () => import('../views/Home')
   },
   {
-    path: '/detail',
+    path: '/detail/:id',
     name: 'Detail',
     meta: {
       layout: 'Main',

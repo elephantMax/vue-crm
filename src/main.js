@@ -5,9 +5,11 @@ import store from './store'
 import {Field, Form} from 'vee-validate'
 import messagePlugin from '@/utils/message.plugin';
 import Loader from '@/components/app/Loader';
+import Paginate from '@/components/app/Pagination';
+import tooltipDirective from '@/directives/tooltip.directive';
 import './registerServiceWorker'
 import 'materialize-css/dist/js/materialize.min'
-import tooltipDirective from '@/directives/tooltip.directive';
+
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -36,6 +38,7 @@ firebase.auth().onAuthStateChanged(()=>{
         app.component('Field', Field);
         app.component('Form', Form);
         app.component('Loader', Loader);
+        app.component('Paginate', Paginate);
         app.use(store);
         app.use(router);
         app.mount('#app');

@@ -1,0 +1,12 @@
+{
+  "ProfileTitle": "Профиль",
+  "Name": "Имя",
+  "Message_EnterName": "Введите имя",
+  "Message_ThisFieldIsString": "Это поле должно быть строкой",
+  "Update": "Обновить",
+  "Menu_Bill": "Счет",
+  "Menu_History": "История",
+  "Menu_Planning": "Планирование",
+  "Menu_NewRecord": "Новая запись",
+  "Menu_Categories": "Категории"
+}

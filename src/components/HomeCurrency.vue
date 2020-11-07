@@ -3,21 +3,21 @@
     <div class="card orange darken-3 bill-card">
       <div class="card-content white-text">
         <div class="card-header">
-          <span class="card-title">Курс валют</span>
+          <span class="card-title">{{$localizeFilter('ExchangeRates')}}</span>
         </div>
         <table>
           <thead>
             <tr>
-              <th>Валюта</th>
-              <th>Курс</th>
-              <th>Дата</th>
+              <th>{{$localizeFilter('Currency')}}</th>
+              <th>{{$localizeFilter('Course')}}</th>
+              <th>{{$localizeFilter('Date')}}</th>
             </tr>
           </thead>
 
           <tbody>
             <tr v-for="cur in currencies" :key="cur">
               <td>{{cur}}</td>
-              <td>{{rates[cur].toFixed(5)}}</td>
+              <td>{{rates[cur]}}</td>
               <td>{{formatDate(date)}}</td>
             </tr>
           </tbody>
@@ -33,7 +33,7 @@ export default {
   name: 'Home currency',
   props: ['rates', 'date'],
   data: () =>({
-    currencies: ['RUB', 'EUR', 'USD']
+    currencies: ['RUB', 'USD', 'EUR']
   }),
   methods:{
     formatDate(date){

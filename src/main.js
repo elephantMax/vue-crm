@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import {Field, Form} from 'vee-validate'
 import messagePlugin from '@/utils/message.plugin';
+import localizePlugin from '@/utils/localize.plugin';
 import Loader from '@/components/app/Loader';
 import Paginate from '@/components/app/Pagination';
 import tooltipDirective from '@/directives/tooltip.directive';
@@ -30,10 +31,12 @@ firebase.initializeApp(firebaseConfig);
 
 let app;
 
+
 firebase.auth().onAuthStateChanged(()=>{
     if(!app){
         app = createApp(App);
         app.use(messagePlugin);
+        app.use(localizePlugin);
         app.directive('tooltip', tooltipDirective);
         app.component('Field', Field);
         app.component('Form', Form);

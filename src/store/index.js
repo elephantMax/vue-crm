@@ -19,9 +19,8 @@ export default createStore({
   },
   actions:{
     async fetchCurrency(){
-      const key = process.env.VUE_APP_FIXER;
-      const res =  await fetch(`http://data.fixer.io/api/latest?access_key=${key}&format=1&symbols=USD,EUR,RUB`);
-      return await res.json();
+      const res =  await fetch('https://www.cbr-xml-daily.ru/latest.js')
+      return await res.json()
     }
   },
   getters:{

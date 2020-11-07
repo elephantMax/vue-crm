@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Счет</h3>
+      <h3>{{$localizeFilter('Bill')}}</h3>
 
       <button @click="refresh" class="btn waves-effect waves-light btn-small">
         <i class="material-icons">refresh</i>
@@ -40,7 +40,18 @@ export default {
     }
   },
   async mounted(){
-    this.currency = await this.$store.dispatch('fetchCurrency');
+    let currency = await this.$store.dispatch('fetchCurrency');
+    const rates = []
+    rates['RUB'] = 1 
+    for(let i in currency.rates){
+      if(i === 'USD' || i === 'EUR'){
+        rates[i] = currency.rates[i]
+      }
+    }
+    this.currency = {
+      ...currency,
+      rates,
+    }
     this.loading = false;
   },
   components:{HomeBill, HomeCurrency}

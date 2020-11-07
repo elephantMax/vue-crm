@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История записей</h3>
+      <h3>{{$localizeFilter('RecordHistory')}}</h3>
     </div>
 
     <div class="history-chart">
@@ -55,7 +55,7 @@ export default {
             categoryName: categories.find((cat) => cat.id === record.category)
               .title,
             typeClass: record.type === "income" ? "green" : "red",
-            typeText: record.type === "income" ? "доход" : "расход",
+            typeText: record.type === "income" ?  this.$localizeFilter('Income') : this.$localizeFilter('Outcome'),
           };
         })
       );

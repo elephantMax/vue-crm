@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import firebase from 'firebase/app'
 
+
 const routes = [
   {
     path: '/categories',
@@ -91,6 +92,7 @@ const router = createRouter({
 router.beforeEach((to, from, next)=>{
   const currentUser = firebase.auth().currentUser;
   const requireAuth = to.matched.some(record => record.meta.auth);
+  document.title =  `${to.name} | ${process.env.VUE_APP_TITLE}`;
   if(requireAuth && !currentUser){
     next('/login?message=login');
   }

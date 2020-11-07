@@ -3,11 +3,11 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Сумма</th>
-        <th>Дата</th>
-        <th>Категория</th>
-        <th>Тип</th>
-        <th>Открыть</th>
+        <th>{{$localizeFilter('Amount')}}</th>
+        <th>{{$localizeFilter('Date')}}</th>
+        <th>{{$localizeFilter('Category')}}</th>
+        <th>{{$localizeFilter('Type')}}</th>
+        <th>{{$localizeFilter('Open')}}</th>
       </tr>
     </thead>
     <tbody>

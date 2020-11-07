@@ -1,14 +1,29 @@
 <template>
-  <Form class="card auth-card" v-slot="{ errors }"  @submit="login">
+  <Form class="card auth-card" v-slot="{ errors }" @submit="login">
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
       <div class="input-field">
-        <Field name="email" v-model.trim="email" as="input" :rules="emailValidation"  placeholder="Email"/>
+        <Field
+          name="email"
+          v-model.trim="email"
+          as="input"
+          :rules="emailValidation"
+          :class="{ invalid: errors.email, valid: !errors.email }"
+          placeholder="Email"
+        />
         <span class="helper-text invalid" name="email">{{ errors.email }}</span>
       </div>
       <div class="input-field">
-        <Field  name="password" v-model.trim="password" placeholder="Пароль" :rules="passwordValidation" />
-        <span class="helper-text invalid" name="password">{{ errors.password }}</span>
+        <Field
+          name="password"
+          v-model.trim="password"
+          placeholder="Пароль"
+          :rules="passwordValidation"
+          :class="{ invalid: errors.password, valid: !errors.password }"
+        />
+        <span class="helper-text invalid" name="password">{{
+          errors.password
+        }}</span>
       </div>
     </div>
     <div class="card-action">
@@ -27,39 +42,37 @@
 </template>
 
 <script>
-import * as rules from '../validateRules/rules'
-import Messages from '@/utils/messages';
+import * as rules from "../validateRules/rules";
+import Messages from "@/utils/messages";
 export default {
   name: "login",
   data: () => ({
     email: null,
     password: null,
   }),
-  components: {
-  },
+  components: {},
   methods: {
-    emailValidation(){
-      return rules['emailValidation'](this.email);
+    emailValidation() {
+      return rules["emailValidation"](this.email);
     },
-    passwordValidation(){
-      return rules['passwordValidation'](this.password);
+    passwordValidation() {
+      return rules["passwordValidation"](this.password);
     },
     async login() {
       const formData = {
         email: this.email,
-        password: this.password
-      }
-      try{
-        await this.$store.dispatch('login', formData); //1ый аргумент - название action 2ой - объект с полями и значениями
-        this.$router.push('/');
-      }
-      catch (e){}
+        password: this.password,
+      };
+      try {
+        await this.$store.dispatch("login", formData); //1ый аргумент - название action 2ой - объект с полями и значениями
+        this.$router.push("/");
+      } catch (e) {}
     },
   },
-  mounted(){
-    if(Messages[this.$route.query.message]){
+  mounted() {
+    if (Messages[this.$route.query.message]) {
       this.$message(Messages[this.$route.query.message]);
-    }  
-  }
+    }
+  },
 };
 </script>

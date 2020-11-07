@@ -13,12 +13,12 @@
               <p>Описание: {{record.description}}</p>
               <p>Сумма: {{ formatCurrency(record.amount) }}</p>
               <p>Категория: {{record.categoryTitle}}</p>
-
               <small>{{ formatDate(record.date) }}</small>
             </div>
           </div>
         </div>
       </div>
+      <div style="color: red; sda"></div>
     </div>
     <h5 class="center" v-else>Запси с id {{$route.params.id }} не найдена</h5>
   </div>

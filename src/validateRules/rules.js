@@ -40,8 +40,8 @@ export function requiredRule(value){
 }
 
 export function StringValue(value){
-    if(!/^[a-z]+$/i.test(value)){
-        return 'Данное поле должно являться строкой';
+    if(!/^[a-zа-я]+$/i.test(value)){
+        return false;
     }
     return true;
 }

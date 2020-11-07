@@ -6,22 +6,24 @@
         active-class="active"
         :to="link.url"
       >
-        {{ link.title }}
+        {{ $localizeFilter(link.title) }}
       </router-link>
     </li>
   </ul>
 </template>
 
 <script>
+let localizeFilter;
 export default {
   data: () => ({
     links: [
-      { title: "Счет", url: "/", active: false },
-      { title: "История", url: "/history", active: false },
-      { title: "Планирование", url: "/planning", active: false },
-      { title: "Новая запись", url: "/record", active: false },
-      { title: "Категории", url: "/categories", active: false },
+      { title: "Menu_Bill", url: "/", active: false },
+      { title: "Menu_History", url: "/history", active: false },
+      { title: "Menu_Planning", url: "/planning", active: false },
+      { title: "Menu_NewRecord", url: "/record", active: false },
+      { title: "Menu_Categories", url: "/categories", active: false },
     ],
+
   }),
   methods:{
     activeLink(id){

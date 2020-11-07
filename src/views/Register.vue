@@ -3,20 +3,49 @@
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
       <div class="input-field">
-        <Field name="email" type="email" v-model="email" as="input" placeholder="Email" :rules="emailValidation" /> 
-        <span class="helper-text invalid"> {{errors.email}} </span>
+        <Field
+          name="email"
+          type="email"
+          v-model="email"
+          as="input"
+          placeholder="Email"
+          :rules="emailValidation"
+          :class="{ invalid: errors.email, valid: !errors.email }"
+        />
+        <span class="helper-text invalid"> {{ errors.email }} </span>
       </div>
       <div class="input-field">
-        <Field  as="input" type="password" name="password" v-model="password" :rules="passwordValidation" placeholder="Пароль" />
-        <small class="helper-text invalid">{{errors.password}}</small>
+        <Field
+          as="input"
+          type="password"
+          name="password"
+          v-model="password"
+          :rules="passwordValidation"
+          placeholder="Пароль"
+          :class="{ invalid: errors.password, valid: !errors.password }"
+        />
+        <small class="helper-text invalid">{{ errors.password }}</small>
       </div>
       <div class="input-field">
-        <Field name="name" type="text" :rules="nameValidation" v-model="name" placeholder="Имя" />
+        <Field
+          name="name"
+          type="text"
+          :rules="nameValidation"
+          v-model="name"
+          placeholder="Имя"
+          :class="{ invalid: errors.name, valid: !errors.name }"
+        />
         <small class="helper-text invalid">{{ errors.name }}</small>
       </div>
       <p>
         <label>
-          <Field name="accept" as="input" v-model="accept" :rules="checkBoxValidation" type="checkbox"/>
+          <Field
+            name="accept"
+            as="input"
+            v-model="accept"
+            :rules="checkBoxValidation"
+            type="checkbox"
+          />
           <span>С правилами согласен</span>
           <span class="helper-text invalid">{{ errors.accept }}</span>
         </label>
@@ -37,7 +66,12 @@
   </Form>
 </template>
 <script>
-import {emailValidation, passwordValidation, nameValidation, checkBoxValidation} from '../validateRules/rules'
+import {
+  emailValidation,
+  passwordValidation,
+  nameValidation,
+  checkBoxValidation,
+} from "../validateRules/rules";
 
 export default {
   name: "register",
@@ -45,21 +79,20 @@ export default {
     email: null,
     password: null,
     name: null,
-    accept: null
+    accept: null,
   }),
-  components: {
-  },
+  components: {},
   methods: {
-    emailValidation(){
+    emailValidation() {
       return emailValidation(this.email);
     },
-    passwordValidation(){
+    passwordValidation() {
       return passwordValidation(this.password);
     },
-    nameValidation(){
+    nameValidation() {
       return nameValidation(this.name);
     },
-    checkBoxValidation(){
+    checkBoxValidation() {
       return checkBoxValidation(this.accept);
     },
     async register() {
@@ -68,13 +101,11 @@ export default {
         email: this.email,
         password: this.password,
       };
-      try{
-        await this.$store.dispatch('register', formData);
+      try {
+        await this.$store.dispatch("register", formData);
         this.$router.push("/");
-      }
-      catch (e) {}
-      
+      } catch (e) {}
     },
-  }
+  },
 };
 </script>

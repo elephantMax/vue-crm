@@ -48,6 +48,10 @@ export default {
         rates[i] = currency.rates[i]
       }
     }
+    rates['RUB'] = (rates['RUB'] - rates['EUR']) * 100
+    rates['EUR'] = 1
+    rates['USD'] = rates['RUB'] * rates['USD']
+  
     this.currency = {
       ...currency,
       rates,

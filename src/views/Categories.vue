@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Категории</h3>
+      <h3>{{$localizeFilter('Categories')}}</h3>
     </div>
     <section>
       <Loader v-if="loading" />
@@ -10,7 +10,7 @@
 
         <CategoryUpdate v-if="categories.length" :key="categories.length + updateCount" @updated="updateCategories" :categories="categories" /> 
         <!-- При изменении key перерисовывается компонент -->
-        <h5 v-else class="center">Категорий пока нету</h5>
+        <h5 v-else class="center">{{$localizeFilter('EmptyHere')}}</h5>
       </div>
     </section>
   </div>

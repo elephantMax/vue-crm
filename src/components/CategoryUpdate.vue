@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Редактировать</h4>
+        <h4>{{ $localizeFilter("Update") }}</h4>
       </div>
 
       <Form @submit="updateCategory" v-slot="{ errors }">
@@ -33,7 +33,7 @@
             v-model="title"
             :class="{invalid: errors.title, valid: !errors.title}"
           />
-          <label for="name">Название</label>
+          <label for="name">{{ $localizeFilter("Name") }}</label>
           <span class="helper-text invalid">{{ errors.title }}</span>
         </div>
 
@@ -47,12 +47,12 @@
             v-model="limit"
             :class="{invalid: errors.limit, valid: !errors.limit}"
           />
-          <label for="limit">Лимит</label>
+          <label for="limit">{{ $localizeFilter("Limit") }}</label>
           <span class="helper-text invalid">{{ errors.limit }}</span>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Обновить
+          {{ $localizeFilter("Update") }}
           <i class="material-icons right">send</i>
         </button>
       </Form>
@@ -120,12 +120,13 @@ export default {
       else {
         const minVal = 100;
         if (!minValueValidation(this.limit, minVal))
-          return `Данное поле должно быть больше чем ${minVal}`;
+          return this.$localizeFilter("FieldMoreThen") + " " + minVal;
       }
       return true;
     },
     titleRules() {
-      return requiredRule(this.title);
+      if(!requiredRule(this.title)) return this.$localizeFilter("FieldIsRequired")
+      return true
     },
   },
 };

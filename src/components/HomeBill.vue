@@ -22,7 +22,7 @@ export default {
   props: ['rates'],
   computed:{
     base(){
-      return this.$store.getters.info.bill / (this.rates['RUB'])
+      return this.$store.getters.info.bill / (this.rates['RUB'] / this.rates['EUR'])
     },
   },
   methods:{

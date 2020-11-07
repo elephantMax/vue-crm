@@ -3,16 +3,16 @@
     <Loader v-if="loading" />
     <div v-else-if="record"> 
       <div class="breadcrumb-wrap">
-        <router-link to="/history" class="breadcrumb">История</router-link>
-        <a class="breadcrumb"> {{record.type === 'income' ? 'Доход' : 'Расход' }} </a>
+        <router-link to="/history" class="breadcrumb">{{$localizeFilter("History")}}</router-link>
+        <a class="breadcrumb"> {{record.type === 'income' ? $localizeFilter("Income") : $localizeFilter("Outcome") }}</a>
       </div>
       <div class="row"  :key="record.id">
         <div class="col s12 m6">
           <div class="card" :class="{green: record.type === 'income', red: record.type === 'outcome'}">
             <div class="card-content white-text">
-              <p>Описание: {{record.description}}</p>
-              <p>Сумма: {{ formatCurrency(record.amount) }}</p>
-              <p>Категория: {{record.categoryTitle}}</p>
+              <p>{{$localizeFilter("Description")}}: {{record.description}}</p>
+              <p>{{$localizeFilter("Amount")}}: {{ formatCurrency(record.amount) }}</p>
+              <p>{{$localizeFilter("Category")}}: {{record.categoryTitle}}</p>
               <small>{{ formatDate(record.date) }}</small>
             </div>
           </div>

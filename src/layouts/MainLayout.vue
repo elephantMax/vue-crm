@@ -11,7 +11,7 @@
       </div>
     </main>
 
-    <div  v-tooltip="'Создать новую запись'" class="fixed-action-btn">
+    <div  v-tooltip="$localizeFilter('AddRecord')" class="fixed-action-btn">
       <router-link class="btn-floating btn-large blue" to="/record">
         <i class="large material-icons">add</i>
       </router-link>

@@ -13,7 +13,7 @@ export default {
     async getRecords({dispatch, commit}){
       try {
         const uid = await dispatch('getUid');
-        const records = (await firebase.database().ref(`/users/${uid}/records`).once('value')).val();
+        const records = (await firebase.database().ref(`/users/${uid}/records`).once('value')).val() || {};
         return Object.keys(records).map(key => ({
           id: key,
           ...records[key]

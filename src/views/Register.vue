@@ -39,18 +39,13 @@
       </div>
       <p>
         <label>
-          <Field
-            name="accept"
-            as="input"
-            v-model="accept"
-            :rules="checkBoxValidation"
-            type="checkbox"
-          />
+          <input type="checkbox" v-model="accept">
           <span>С правилами согласен</span>
-          <span class="helper-text invalid">{{ errors.accept }}</span>
+          <span v-if="!accept" class="helper-text invalid">Необходимо согласиться с правилами</span>
         </label>
       </p>
     </div>
+    
     <div class="card-action">
       <div>
         <button class="btn waves-effect waves-light auth-submit" type="submit">
@@ -79,7 +74,7 @@ export default {
     email: null,
     password: null,
     name: null,
-    accept: null,
+    accept: false,
   }),
   components: {},
   methods: {
@@ -92,10 +87,8 @@ export default {
     nameValidation() {
       return nameValidation(this.name);
     },
-    checkBoxValidation() {
-      return checkBoxValidation(this.accept);
-    },
     async register() {
+      if(!this.accept) return
       const formData = {
         name: this.name,
         email: this.email,
@@ -106,6 +99,6 @@ export default {
         this.$router.push("/");
       } catch (e) {}
     },
-  },
+  }
 };
 </script>

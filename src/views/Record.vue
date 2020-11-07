@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Новая запись</h3>
+      <h3>{{$localizeFilter('NewRecord')}}</h3>
     </div>
     <Loader v-if="loading" />
     <h5 class="center" v-else-if="!categories.length">
-      Категорий пока нету
-      <router-link to="/categories">Добавить категорию</router-link>
+      {{$localizeFilter('EmptyHere')}}
+      <router-link to="/categories">{{$localizeFilter('AddCategory')}}</router-link>
     </h5>
     <Form @submit="addRecord" v-slot="{ errors }" v-else class="form">
       <div class="input-field">
@@ -15,7 +15,7 @@
             {{ cat.title }}
           </option>
         </select>
-        <label>Выберите категорию</label>
+        <label>{{$localizeFilter('ChooseCategory')}}</label>
       </div>
 
       <p>
@@ -27,7 +27,7 @@
             type="radio"
             value="income"
           />
-          <span>Доход</span>
+          <span>{{$localizeFilter('Income')}}</span>
         </label>
       </p>
 
@@ -40,7 +40,7 @@
             type="radio"
             value="outcome"
           />
-          <span>Расход</span>
+          <span>{{$localizeFilter('Outcome')}}</span>
         </label>
       </p>
 
@@ -54,7 +54,7 @@
           type="number"
           :class="{ invalid: errors.amount, valid: !errors.amount }"
         />
-        <label for="amount">Сумма</label>
+        <label for="amount">{{$localizeFilter('Amount')}}</label>
         <span class="helper-text invalid">{{ errors.amount }}</span>
       </div>
 
@@ -68,12 +68,12 @@
           type="text"
           :class="{ invalid: errors.description, valid: !errors.description }"
         />
-        <label for="description">Описание</label>
+        <label for="description">{{$localizeFilter('Description')}}</label>
         <span class="helper-text invalid">{{ errors.description }}</span>
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
-        Создать
+        {{$localizeFilter('Create')}}
         <i class="material-icons right">send</i>
       </button>
     </Form>
@@ -135,8 +135,9 @@ export default {
             : +this.info.bill - +this.amount // else
           bill = +bill;
           await this.$store.dispatch('updateInfo', {bill});
-
-          this.$message('Вы успешно создали запись');
+          this.amount = 1 
+          this.description = null
+          this.$message(this.$localizeFilter("SuccessCreatedRecord"));
         } catch (error) {}
        
       } 
@@ -144,13 +145,13 @@ export default {
     },
     require(value) {
       if (!requiredRule(value)) {
-        return "Данное поле обязательно";
+        return this.$localizeFilter("FieldIsRequired");
       }
       return true;
     },
     minValue(value) {
       if (!minValueValidation(value, 1)) {
-        return "Мимиальное значение 1";
+        return this.$localizeFilter("FieldMoreThen") + ' ' + 1;
       }
       return true;
     },

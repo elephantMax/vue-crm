@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>{{$localizeFilter('RecordHistory')}}</h3>
+      <h3>{{$localizeFilter('History')}}</h3>
     </div>
 
     <div class="history-chart">
@@ -9,7 +9,7 @@
     </div>
     <Loader v-if="loading" />
     <h5 class="center" v-else-if="!records.length">
-      Здесь пока пусто <router-link to="/record">Добавить запись</router-link>.
+      {{$localizeFilter('EmptyHere')}} <router-link to="/record">{{$localizeFilter('AddRecord')}}</router-link>.
     </h5>
     <section v-else>
       <HistoryTable :records="items" />

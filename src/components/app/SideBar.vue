@@ -19,9 +19,9 @@ export default {
     links: [
       { title: "Menu_Bill", url: "/", active: false },
       { title: "Menu_History", url: "/history", active: false },
-      { title: "Menu_Planning", url: "/planning", active: false },
-      { title: "Menu_NewRecord", url: "/record", active: false },
-      { title: "Menu_Categories", url: "/categories", active: false },
+      { title: "Planning", url: "/planning", active: false },
+      { title: "NewRecord", url: "/record", active: false },
+      { title: "Categories", url: "/categories", active: false },
     ],
 
   }),

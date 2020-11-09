@@ -1,5 +1,5 @@
 # vuecrm
-
+## Приложение: https://vue-crm-dd9be.web.app/
 ## Project setup
 ```
 npm install
